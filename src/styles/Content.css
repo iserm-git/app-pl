@@ -1,4 +1,6 @@
 .content {
-  height: 600px;
-  background-color: burlywood;
+  height: 100%;
+  min-height: 528px;
+  background-color: white;
+  padding: 0 24px;
 }

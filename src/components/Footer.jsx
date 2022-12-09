@@ -5,8 +5,8 @@ import "../styles/Footer.css";
 import "../styles/Footer.css";
 const Footer = () => {
   return (
-    <footer>
-      <h1>Copyright 2022</h1>
+    <footer className="scroll">
+      <h2>Copyright 2022</h2>
     </footer>
   );
 };
