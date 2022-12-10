@@ -47,123 +47,37 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const MaestrosAdd = () => {
-  const [nombre, setNombre] = useState("");
-  const [apPaterno, setApPaterno] = useState("");
-  const [apMaterno, setApMaterno] = useState("");
-  const [cveCarrera, setCveCarrera] = useState("");
-
-  handleNombre = (event) => {
-    this.setNombre(event.target.value);
-  };
-
-  handleApellidoP = (event) => {
-    this.setApPaterno(event.target.value);
-  };
-
-  handleApellidoM = (event) => {
-    this.setApMaterno(event.target.value);
-  };
-
-  handleCarrera = (event) => {
-    this.setCveCarrera(event.target.value);
-  };
-
-  handleSumbit = (event) => {
-    const maestro = {
-      nombre: this.state.nombre,
-      apellidoP: this.state.apellidoP,
-      apellidoM: this.state.apellidoM,
-      cveCarrera: this.state.cveCarrera,
-    };
-
-    const server = `http://localhost:4000/`;
-    axios.posts(`${server}/maestros/`, { maestro }).then((res) => {
-      console.log(res);
-      console.log(res.data);
-    });
-  };
-
+  // const [nombre, setNombre] = useState("");
+  // const [apPaterno, setApPaterno] = useState("");
+  // const [apMaterno, setApMaterno] = useState("");
+  // const [cveCarrera, setCveCarrera] = useState("");
+  // handleNombre = (event) => {
+  //   this.setNombre(event.target.value);
+  // };
+  // handleApellidoP = (event) => {
+  //   this.setApPaterno(event.target.value);
+  // };
+  // handleApellidoM = (event) => {
+  //   this.setApMaterno(event.target.value);
+  // };
+  // handleCarrera = (event) => {
+  //   this.setCveCarrera(event.target.value);
+  // };
+  // handleSumbit = (event) => {
+  //   const maestro = {
+  //     nombre: this.state.nombre,
+  //     apellidoP: this.state.apellidoP,
+  //     apellidoM: this.state.apellidoM,
+  //     cveCarrera: this.state.cveCarrera,
+  //   };
+  //   const server = `http://localhost:4000/`;
+  //   axios.posts(`${server}/maestros/`, { maestro }).then((res) => {
+  //     console.log(res);
+  //     console.log(res.data);
+  // });
   return (
     <Content>
-      <form>
-        <h1>CAPTURA DE MAESTROS</h1>
-
-        <Grid container spacing={2}>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={4}>
-            <FormControl fullWidth>
-              <TextField
-                fullWidth
-                label="Nombre"
-                id="nombre"
-                onChange="handleNombre"
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={4}>
-            <FormControl fullWidth>
-              <TextField
-                fullWidth
-                label="Apellido paterno"
-                id="apPaterno"
-                onChange="handleApellidoP"
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={4}>
-            <FormControl fullWidth>
-              <TextField
-                fullWidth
-                label="Apellido materno"
-                id="apMaterno"
-                onChange="handleApellidoM"
-              />{" "}
-            </FormControl>
-          </Grid>
-          <Grid item xs={4}>
-            <FormControl fullWidth>
-              <InputLabel id="carrerasLbl">Carrera</InputLabel>
-              <Select
-                labelId="carrerasLbl"
-                id="cveCarrera"
-                name="cveCarrera"
-                onChange="handleCarrera"
-              >
-                <MenuItem key="1" value="ISC">
-                  ISC
-                </MenuItem>
-                <MenuItem key="2" value="TICS">
-                  TICS
-                </MenuItem>
-                <MenuItem key="3 " value="Industrial">
-                  Industrial
-                </MenuItem>
-                <MenuItem key="4 " value="Alimentarias">
-                  Alimentarias
-                </MenuItem>
-                <MenuItem key="5 " value="Gestión">
-                  Gestión
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={5}></Grid>
-          <Grid item xs={2}>
-            <Button
-              variant="contained"
-              color="success"
-              type="submit"
-              onClick="handleSubmit"
-            >
-              Guardar
-            </Button>
-          </Grid>
-          <Grid item xs={5}></Grid>
-        </Grid>
-      </form>
+      <h1>MAESTROS ADD</h1>
     </Content>
   );
 };
