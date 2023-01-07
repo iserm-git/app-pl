@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Content from "../../components/Content";
 import axios from "axios";
+
+import AlumnoService from "../../services/AlumnoService";
 
 import {
   FormControl,
   FormLabel,
+  InputLabel,
   RadioGroup,
   Radio,
   FormControlLabel,
@@ -20,150 +23,43 @@ import { Grid } from "@mui/material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 const AlumnoAdd = () => {
-  const initialValues = {
-    firstName: "",
-    lastName: "",
-    gender: "male",
-    country: "Canada",
-    hobby: "",
-  };
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
+  const [nombre, setNombre] = useState("");
+  const [grado, setGrado] = useState("");
+
+  const handleAlumno = (event) => {
+    setNombre(event.target.value);
   };
 
-  const [formValues, setFormValues] = useState(initialValues);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(formValues);
+  const handleGrado = (event) => {
+    setGrado(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    // const server = `http://localhost:4000`;
+
+    let alumno = {
+      nombre: nombre,
+      grado: grado,
+    };
+
+    // const { data } = await axios.post(`${server}/alumnos`, alumno);
+    AlumnoService.createAlumno(alumno);
+    // console.log(data);
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <Grid container alignItems="center" justify="center" direction="column">
-          <h1>REGISTRO DE ALUMNO</h1>
-          <Grid item>
-            <TextField
-              id="firstName"
-              name="firstName"
-              label="First name"
-              type="text"
-              value={formValues.firstName}
-              onChange={handleInputChange}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="lastName"
-              name="lastName"
-              label="Last name"
-              type="text"
-              value={formValues.lastName}
-              onChange={handleInputChange}
-            />
-          </Grid>
-          <Grid item>
-            <FormControl>
-              <FormLabel>Gender</FormLabel>
-              <RadioGroup
-                name="gender"
-                value={formValues.gender}
-                onChange={handleInputChange}
-                row
-              >
-                <FormControlLabel
-                  key="male"
-                  value="male"
-                  control={<Radio size="small" />}
-                  label="Male"
-                />
-                <FormControlLabel
-                  key="female"
-                  value="female"
-                  control={<Radio size="small" />}
-                  label="Female"
-                />
-                <FormControlLabel
-                  key="other"
-                  value="other"
-                  control={<Radio size="small" />}
-                  label="Other"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-
-          <Grid item>
-            <FormControl>
-              <Select
-                name="country"
-                value={formValues.country}
-                onChange={handleInputChange}
-              >
-                <MenuItem key="canada" value="Canada">
-                  Canada
-                </MenuItem>
-                <MenuItem key="japan" value="Japan">
-                  Japan
-                </MenuItem>
-                <MenuItem key="germany " value="Germany">
-                  Germany
-                </MenuItem>
-                <MenuItem key="switzerland " value="Switzerland">
-                  Switzerland
-                </MenuItem>
-                <MenuItem key="australia " value="Australia">
-                  Australia
-                </MenuItem>
-                <MenuItem key="united_states " value="United States">
-                  United States
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-
-          <Grid item>
-            <FormLabel>Hobby</FormLabel>
-            <FormGroup>
-              <FormControlLabel
-                control={<Checkbox name="hobby" defaultChecked />}
-                label="Writing"
-              />
-              <FormControlLabel
-                control={<Checkbox name="hobby" />}
-                label="Dance"
-              />
-              <FormControlLabel
-                control={<Checkbox name="hobby" />}
-                label="Painting"
-              />
-              <FormControlLabel
-                control={<Checkbox name="hobby" />}
-                label="Video Game"
-              />
-            </FormGroup>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              style={{
-                backgroundColor: "green",
-                margin: "5px",
-              }}
-            >
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-      ;
-    </>
+    <Content>
+      <h1>CAPTURA DE ALUMNOS</h1>
+      <label>
+        Nombre de alumno:
+        <input type="text" name="nombre" onChange={handleAlumno} />
+      </label>
+      <label>
+        Grupo:
+        <input type="text" name="grado" onChange={handleGrado} />
+      </label>
+      <button onClick={handleSubmit}>Add</button>
+    </Content>
   );
 };
 

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import Content from "../../components/Content";
 import axios from "axios";
 
+import AlumnoService from "../../services/AlumnoService";
+import AlumnoEdit from "../Alumnos/AlumnoEdit";
+
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
@@ -15,9 +18,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useHistory } from "react-router";
 
 const Alumnos = () => {
   const [alumno, setAlumno] = useState([]);
+  // const [id, setId] = useState("");
   const server = `http://localhost:4000`;
 
   const getData = async () => {
@@ -43,11 +48,20 @@ const Alumnos = () => {
         <TableCell>{info.grado}</TableCell>
         <TableCell>
           <IconButton aria-label="editar">
-            <EditIcon color="primary" />
+            <a href={`alumnos-edit/${info.id}`}>
+              <EditIcon color="primary" />
+            </a>
           </IconButton>
         </TableCell>
         <TableCell>
-          <IconButton aria-label="borrar">
+          <IconButton
+            aria-label="borrar"
+            onClick={() => {
+              //console.log(info.id);
+              AlumnoService.deleteAlumno(info.id);
+              getData();
+            }}
+          >
             <DeleteIcon color="danger" />
           </IconButton>
         </TableCell>
