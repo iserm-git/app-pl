@@ -1,10 +1,24 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Content from "../../components/Content";
 
 import AlumnoService from "../../services/AlumnoService";
 
-import { TextField, Button, Grid, Typography } from "@mui/material";
+import {
+  FormControl,
+  FormLabel,
+  InputLabel,
+  RadioGroup,
+  Radio,
+  FormControlLabel,
+  TextField,
+  MenuItem,
+  Select,
+  FormGroup,
+  Checkbox,
+  Button,
+  Grid,
+  Typography,
+} from "@mui/material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 const AlumnoAdd = () => {
@@ -12,12 +26,10 @@ const AlumnoAdd = () => {
   const [edad, setEdad] = useState("");
   const [errors, setErrors] = useState({});
 
-  const navigate = useNavigate();
-
   const validate = () => {
     let temp = {};
-    temp.nomAlumno = nomAlumno ? "" : "El nombre de alumno es requerido.";
-    temp.edad = edad ? "" : "La edad es requerida.";
+    temp.nomAlumno = nomAlumno ? "" : "This field is required.";
+    temp.edad = edad ? "" : "This field is required.";
     setErrors({
       ...temp,
     });
@@ -40,7 +52,6 @@ const AlumnoAdd = () => {
       };
       console.log(alumno);
       AlumnoService.createAlumno(alumno);
-      navigate("/alumnos");
     }
   };
 
@@ -50,8 +61,7 @@ const AlumnoAdd = () => {
         CAPTURA DE ALUMNOS
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={3}></Grid>
-        <Grid item xs={5}>
+        <Grid item xs={12}>
           <TextField
             variant="outlined"
             fullWidth
@@ -65,7 +75,7 @@ const AlumnoAdd = () => {
             })}
           />
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={12}>
           <TextField
             variant="outlined"
             fullWidth
@@ -77,19 +87,14 @@ const AlumnoAdd = () => {
             {...(errors.edad && { error: true, helperText: errors.edad })}
           />
         </Grid>
-        <Grid item xs={3}></Grid>
-        <Grid
-          item
-          xs={12}
-          style={{ display: "flex", justifyContent: "center" }}
-        >
+        <Grid item xs={12}>
           <Button
             variant="contained"
             color="primary"
             onClick={handleSubmit}
             startIcon={<PersonAddIcon />}
           >
-            Guardar
+            Add
           </Button>
         </Grid>
       </Grid>

@@ -13,6 +13,9 @@ import CalificacionesAdd from "../pages/Calificaciones/CalificacionesAdd";
 // import RecoveryPassword from "../pages/RecoveryPassword";
 // import NotFound from "../pages/NotFound"
 import Layout from "../containers/Layout";
+import Sample1 from "../pages/Samples/AlumnoAdd1";
+import RegistroAlumno from "../pages/Samples/RegistroAlumno";
+import MyCalendar from "../pages/Samples/MyCalendar";
 
 import "../styles/App.css";
 
@@ -39,6 +42,9 @@ function App() {
           <Route path="/materias" element={<Materias />}></Route>
           <Route path="/materias-add" element={<MateriasAdd />}></Route>
           <Route path="/calificaciones" element={<Calificaciones />}></Route>
+          <Route path="/samples1" element={<Sample1 />}></Route>
+          <Route path="/registro-alumno" element={<RegistroAlumno />}></Route>
+          <Route path="/calendar" element={<MyCalendar />}></Route>
         </Routes>
       </Layout>
     </BrowserRouter>

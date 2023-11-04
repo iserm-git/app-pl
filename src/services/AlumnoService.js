@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const ALUMNO_API_BASE_URL = "http://localhost:4000/alumnos";
+// const ALUMNO_API_BASE_URL = "http://localhost:4000/alumnos";
+const ALUMNO_API_BASE_URL =
+  "https://api-escolar1-4aeab1ba87bd.herokuapp.com/alumnos";
 
 class AlumnoService {
   getAlumnos() {

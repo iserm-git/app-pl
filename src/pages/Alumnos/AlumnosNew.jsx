@@ -23,10 +23,29 @@ import { useHistory } from "react-router";
 const Alumnos = () => {
   const [alumno, setAlumno] = useState([]);
   // const [id, setId] = useState("");
-  const server = `https://api-escolar1-4aeab1ba87bd.herokuapp.com`;
+  const server = `https://localhost:4000`;
+
+  const filter = {
+    include: [
+      {
+        relation: "alumnos", // asumiendo que 'alumno' es el nombre de la relación en el modelo AlumnoGrupo
+        scope: {
+          fields: ["nomAlumno", "edad"], // solo traerá los campos 'nombre' y 'edad' del modelo Alumno
+        },
+      },
+      {
+        relation: "grupo", // asumiendo que 'grupo' es el nombre de la relación en el modelo AlumnoGrupo
+        scope: {
+          fields: ["nomGrupo", "grado"], // solo traerá los campos 'nombre' y 'descripcion' del modelo Grupo
+        },
+      },
+    ],
+  };
+
+  const filterString = encodeURIComponent(JSON.stringify(filter));
 
   const getData = async () => {
-    const { data } = await axios.get(`${server}/alumnos`);
+    const { data } = await axios.get(`${server}/alumno-grupos/${filterString}`);
     console.log(data);
     setAlumno(data);
   };
